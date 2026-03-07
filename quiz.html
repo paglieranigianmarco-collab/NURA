@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURA | Scopri il Tuo Percorso Wellness</title>
+    <meta name="description"
+        content="Fai il nostro quiz personalizzato e ricevi raccomandazioni su misura per il tuo benessere.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-container container">
+            <div class="mobile-menu-btn"><i class="ph ph-list"></i></div>
+            <a href="index.html" class="brand-logo">NURA.</a>
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html#categories">Shop <i class="ph ph-caret-down"></i></a></li>
+                    <li><a href="index.html#featured">Bestseller</a></li>
+                    <li><a href="index.html#ethos">Scienza & Ethos</a></li>
+                    <li><a href="index.html">Il Club</a></li>
+                    <li><a href="routine.html"><i class="ph ph-calendar-check"
+                                style="display:inline;margin-right:4px"></i>La Mia Routine</a></li>
+                    <li><a href="quiz.html" class="nav-quiz-btn"><i class="ph ph-sparkle"
+                                style="display:inline;margin-right:4px"></i>Quiz</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="action-btn"><i class="ph ph-magnifying-glass"></i></a>
+                <a href="#" class="action-btn"><i class="ph ph-user"></i></a>
+                <a href="#" class="action-btn cart-btn"><i class="ph ph-shopping-bag"></i><span
+                        class="cart-count">2</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="quiz-main">
+        <!-- Quiz Intro Screen -->
+        <section class="quiz-intro" id="quizIntro">
+            <div class="quiz-bg">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+                <div class="blob blob-3"></div>
+                <div class="hero-noise"></div>
+            </div>
+            <div class="quiz-intro-content">
+                <span class="hero-badge">Personalizzato per te</span>
+                <h1>Scopri il Tuo Percorso Wellness</h1>
+                <p>Rispondi a poche domande e ricevi raccomandazioni scientifiche su misura per i tuoi obiettivi di
+                    benessere.</p>
+                <button class="btn btn-primary btn-lg" id="startQuizBtn">
+                    <i class="ph ph-sparkle" style="display:inline;margin-right:6px"></i> Inizia il Quiz
+                </button>
+                <div class="quiz-stats">
+                    <span><i class="ph ph-timer"></i> 2 minuti</span>
+                    <span><i class="ph ph-users"></i> 50,000+ completati</span>
+                    <span><i class="ph ph-shield-check"></i> Basato sulla scienza</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Questions -->
+        <section class="quiz-container" id="quizContainer" style="display:none;">
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-fill" id="quizProgressFill"></div>
+            </div>
+            <div class="quiz-step-label" id="stepLabel">Domanda 1 di 5</div>
+
+            <!-- All questions rendered by JS -->
+            <div class="quiz-question-area" id="questionArea"></div>
+
+            <div class="quiz-nav">
+                <button class="btn btn-outline quiz-back-btn" id="prevQuestion" style="visibility:hidden;">
+                    <i class="ph ph-arrow-left" style="display:inline"></i> Indietro
+                </button>
+                <button class="btn btn-primary quiz-next-btn" id="nextQuestion" disabled>
+                    Avanti <i class="ph ph-arrow-right" style="display:inline"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Quiz Results -->
+        <section class="quiz-results" id="quizResults" style="display:none;">
+            <div class="results-header">
+                <span class="hero-badge">I tuoi risultati</span>
+                <h2>Il Tuo Profilo Wellness Personalizzato</h2>
+                <p>In base alle tue risposte, ecco il piano che abbiamo creato per te.</p>
+            </div>
+            <div class="results-grid" id="resultsGrid"></div>
+            <div class="results-cta">
+                <button class="btn btn-primary btn-lg" onclick="window.location.href='index.html#featured'">
+                    <i class="ph ph-shopping-bag" style="display:inline;margin-right:6px"></i> Esplora i Prodotti
+                    Consigliati
+                </button>
+                <button class="btn btn-outline btn-lg" id="retakeQuiz">
+                    <i class="ph ph-arrow-counter-clockwise" style="display:inline;margin-right:6px"></i> Rifai il Quiz
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2025 NURA. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>

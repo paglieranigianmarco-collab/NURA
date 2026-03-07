@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                const headerOffset = 80; // Height of the fixed header
+                const headerOffset = 80;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.next-btn');
 
     if (slider && prevBtn && nextBtn) {
-        // Calculate the width of one card + gap to scroll by
         const getScrollAmount = () => {
             const card = slider.querySelector('.product-card');
             if (!card) return 0;
@@ -48,17 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         prevBtn.addEventListener('click', () => {
-            slider.scrollBy({
-                left: -getScrollAmount(),
-                behavior: 'smooth'
-            });
+            slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
         });
 
         nextBtn.addEventListener('click', () => {
-            slider.scrollBy({
-                left: getScrollAmount(),
-                behavior: 'smooth'
-            });
+            slider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
         });
     }
 
@@ -76,36 +69,101 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Scroll Reveal Animations
+    // ─── Enhanced Scroll Reveal System ──────────────────────
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.15
+        rootMargin: '0px 0px -60px 0px',
+        threshold: 0.1
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                // Optional: Stop observing once revealed
-                // observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Elements to animate
-    const revealElements = document.querySelectorAll('.reveal-up, .reveal-fade, .category-card, .product-card');
+    // Reveal classes for all sections
+    const revealElements = document.querySelectorAll(
+        '.reveal-up, .reveal-fade, .category-card, .product-card, ' +
+        '.pillar-card, .curation-card, .testimonial-card, .trust-promise, ' +
+        '.ethos-content, .section-header, .hero-content, .curation-arrow'
+    );
 
-    // Add default reveal class to cards if not present
+    // Add staggered reveal to grid items
     document.querySelectorAll('.category-card, .product-card').forEach((el, index) => {
         if (!el.classList.contains('reveal-up') && !el.classList.contains('reveal-fade')) {
             el.classList.add('reveal-up');
-            // Stagger delay based on index for grid items
             el.style.transitionDelay = `${(index % 4) * 100}ms`;
         }
     });
 
-    revealElements.forEach(el => {
+    // Pillar cards with stagger
+    document.querySelectorAll('.pillar-card').forEach((el, index) => {
+        el.classList.add('reveal-up');
+        el.style.transitionDelay = `${index * 120}ms`;
+    });
+
+    // Curation cards with stagger
+    document.querySelectorAll('.curation-card').forEach((el, index) => {
+        el.classList.add('reveal-up');
+        el.style.transitionDelay = `${index * 150}ms`;
+    });
+
+    // Curation arrows
+    document.querySelectorAll('.curation-arrow').forEach((el, index) => {
+        el.classList.add('reveal-fade');
+        el.style.transitionDelay = `${150 + index * 150}ms`;
+    });
+
+    // Trust promise items with stagger
+    document.querySelectorAll('.trust-promise').forEach((el, index) => {
+        el.classList.add('reveal-up');
+        el.style.transitionDelay = `${index * 100}ms`;
+    });
+
+    // Section headers
+    document.querySelectorAll('.section-header').forEach(el => {
+        el.classList.add('reveal-fade');
+    });
+
+    // Ethos content
+    document.querySelectorAll('.ethos-content').forEach(el => {
+        el.classList.add('reveal-up');
+    });
+
+    // Observe all reveal elements (re-query to include newly added classes)
+    document.querySelectorAll('.reveal-up, .reveal-fade').forEach(el => {
         observer.observe(el);
     });
+
+    // ─── Smooth Parallax for Hero ───────────────────────────
+    const heroSection = document.querySelector('.hero-section');
+    if (heroSection) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const heroHeight = heroSection.offsetHeight;
+            if (scrolled < heroHeight) {
+                const heroContent = heroSection.querySelector('.hero-content');
+                if (heroContent) {
+                    heroContent.style.transform = `translateY(${scrolled * 0.15}px)`;
+                    heroContent.style.opacity = 1 - (scrolled / heroHeight) * 0.5;
+                }
+            }
+        });
+    }
+
+    // ─── Scroll Progress Indicator ──────────────────────────
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    document.body.prepend(progressBar);
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+    });
 });
+
