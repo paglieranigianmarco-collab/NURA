@@ -396,131 +396,143 @@ i {
 .hero-section {
     position: relative;
     min-height: calc(100vh - 80px);
-    /* Minus header */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     overflow: hidden;
     padding: 2rem;
+    background: linear-gradient(165deg, #f8f6f0 0%, #faf9f6 30%, #f0ede4 60%, #e8e3d8 100%);
 }
 
-/* Vibrant Animated Background Elements */
+/* Organic Mesh Background */
 .hero-background-vibrant {
     position: absolute;
     inset: 0;
-    z-index: -1;
-    background-color: var(--color-bg);
+    z-index: 0;
     overflow: hidden;
 }
 
+/* Refined soft blobs — muted earthy tones like Healf */
 .blob {
     position: absolute;
-    filter: blur(80px);
-    opacity: 0.6;
+    filter: blur(100px);
     border-radius: 50%;
-    animation: moveBlob 20s infinite alternate;
+    animation: meshFloat 25s infinite alternate;
 }
 
 .blob-1 {
-    top: -10%;
-    left: -10%;
-    width: 50vw;
-    height: 50vw;
-    background: var(--color-energy);
+    top: -15%;
+    left: -5%;
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle, rgba(193, 168, 132, 0.35) 0%, rgba(193, 168, 132, 0) 70%);
     animation-delay: 0s;
 }
 
 .blob-2 {
-    bottom: -20%;
-    right: -10%;
-    width: 60vw;
-    height: 60vw;
-    background: var(--color-brain);
-    animation-delay: -5s;
-    animation-duration: 25s;
+    bottom: -25%;
+    right: -15%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(134, 166, 132, 0.3) 0%, rgba(134, 166, 132, 0) 70%);
+    animation-delay: -8s;
+    animation-duration: 30s;
 }
 
 .blob-3 {
-    top: 40%;
-    left: 40%;
-    width: 40vw;
-    height: 40vw;
-    background: var(--color-gut);
-    animation-delay: -10s;
-    animation-duration: 18s;
+    top: 30%;
+    left: 50%;
+    width: 35vw;
+    height: 35vw;
+    background: radial-gradient(circle, rgba(178, 148, 120, 0.25) 0%, rgba(178, 148, 120, 0) 70%);
+    animation-delay: -15s;
+    animation-duration: 22s;
 }
 
-@keyframes moveBlob {
+@keyframes meshFloat {
     0% {
-        transform: translate(0, 0) scale(1);
+        transform: translate(0, 0) scale(1) rotate(0deg);
     }
 
-    33% {
-        transform: translate(10%, 15%) scale(1.1);
+    25% {
+        transform: translate(5%, 8%) scale(1.05) rotate(3deg);
     }
 
-    66% {
-        transform: translate(-5%, -10%) scale(0.9);
+    50% {
+        transform: translate(-3%, -5%) scale(0.95) rotate(-2deg);
+    }
+
+    75% {
+        transform: translate(8%, -3%) scale(1.08) rotate(4deg);
     }
 
     100% {
-        transform: translate(-15%, 5%) scale(1.05);
+        transform: translate(-5%, 5%) scale(1) rotate(-1deg);
     }
 }
 
-/* Noise Overlay for Texture */
+/* Subtle grain texture for depth */
 .hero-noise {
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.05;
-    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    mix-blend-mode: multiply;
     pointer-events: none;
 }
 
+/* Premium hero card */
 .hero-content {
-    max-width: 800px;
+    max-width: 740px;
     z-index: 2;
-    padding: 3rem;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    padding: 3.5rem 3rem;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(30px) saturate(1.2);
+    -webkit-backdrop-filter: blur(30px) saturate(1.2);
     border-radius: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+        0 25px 60px -12px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+        0 -10px 30px rgba(255, 255, 255, 0.4) inset;
 }
 
 .hero-badge {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: var(--color-primary);
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
     color: var(--color-white);
     border-radius: var(--border-radius-pill);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     margin-bottom: 1.5rem;
 }
 
 .hero-title {
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(2.75rem, 5.5vw, 4.5rem);
     font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
     margin-bottom: 1.5rem;
-    color: var(--color-primary);
+    color: #1a1a1a;
+    background: linear-gradient(135deg, #1a1a1a 0%, #3d3d3d 50%, #1a1a1a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-description {
-    font-size: clamp(1.1rem, 2vw, 1.25rem);
-    color: var(--color-text);
-    font-weight: 500;
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    color: #4a4a4a;
+    font-weight: 400;
     margin-bottom: 2.5rem;
-    max-width: 600px;
+    max-width: 560px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.7;
 }
 
 .hero-cta-group {
