@@ -419,39 +419,37 @@ i {
 }
 
 /* ==========================================================================
-   Announcement Bar (Healf Inspired Marquee)
+   Announcement Bar — Sleek Black Marquee
    ========================================================================== */
 .announcement-bar-wrapper {
-    background: linear-gradient(90deg, var(--color-energy), #ff4a00, var(--color-energy));
-    background-size: 200% auto;
-    color: var(--color-white);
-    padding: 0.8rem 0;
+    background: #0a0a0a;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.45rem 0;
     overflow: hidden;
     white-space: nowrap;
     display: flex;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-    animation: gradientShift 5s ease infinite;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .announcement-marquee {
     display: inline-flex;
-    gap: 3rem;
-    animation: marqueeText 25s linear infinite;
+    gap: 2.5rem;
+    animation: marqueeText 35s linear infinite;
 }
 
 .announcement-marquee span {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
 .announcement-marquee i {
-    font-size: 1.1rem;
-    color: #ffd166;
-    /* Bright yellow icon pop */
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.45);
 }
 
 @keyframes gradientShift {
@@ -2312,4 +2310,335 @@ i {
     font-size: 0.8rem;
     color: var(--color-text-light);
     margin-top: 0.75rem;
+}
+
+/* ==========================================================================
+   nura AI Chat Widget
+   ========================================================================== */
+
+/* Toggle Button */
+.nura-chat-toggle {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nura-chat-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.32);
+}
+
+.nura-chat-toggle.active {
+    transform: rotate(90deg) scale(0.9);
+    opacity: 0.5;
+}
+
+/* Pulse animation */
+.nura-chat-pulse {
+    animation: chatPulse 2s ease-in-out 3;
+}
+
+@keyframes chatPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    50% {
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25), 0 0 0 12px rgba(26, 26, 26, 0.12);
+    }
+}
+
+/* Notification Badge */
+.nura-chat-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-energy);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+}
+
+/* Chat Window */
+.nura-chat-window {
+    position: fixed;
+    bottom: 5.5rem;
+    right: 1.5rem;
+    z-index: 9998;
+    width: 380px;
+    max-height: 520px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nura-chat-window.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Header */
+.nura-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.nura-chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nura-chat-header-info strong {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: block;
+}
+
+.nura-chat-status {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    display: block;
+}
+
+.nura-chat-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-energy), #ff4a00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.nura-chat-status-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 2px solid #1a1a1a;
+}
+
+.nura-chat-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s;
+    display: flex;
+}
+
+.nura-chat-close:hover {
+    color: #fff;
+}
+
+/* Messages Area */
+.nura-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 340px;
+    min-height: 280px;
+    scroll-behavior: smooth;
+}
+
+/* Messages */
+.nura-chat-msg {
+    display: flex;
+    max-width: 85%;
+    animation: msgIn 0.3s ease-out;
+}
+
+@keyframes msgIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nura-chat-msg-bot {
+    align-self: flex-start;
+}
+
+.nura-chat-msg-user {
+    align-self: flex-end;
+}
+
+.nura-chat-bubble {
+    padding: 0.65rem 1rem;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.nura-chat-msg-bot .nura-chat-bubble {
+    background: #f3f3f3;
+    color: #1a1a1a;
+    border-bottom-left-radius: 4px;
+}
+
+.nura-chat-msg-user .nura-chat-bubble {
+    background: #1a1a1a;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+/* Typing indicator */
+.typing-dots {
+    display: flex;
+    gap: 4px;
+    padding: 4px 0;
+}
+
+.typing-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #999;
+    animation: typingBounce 1.4s ease-in-out infinite;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+
+    40% {
+        transform: translateY(-6px);
+        opacity: 1;
+    }
+}
+
+/* Input Area */
+.nura-chat-input-area {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #eee;
+    background: #fafafa;
+}
+
+.nura-chat-input-area input {
+    flex: 1;
+    border: 1px solid #e0e0e0;
+    border-radius: 100px;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    outline: none;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.nura-chat-input-area input:focus {
+    border-color: #1a1a1a;
+}
+
+.nura-chat-input-area input::placeholder {
+    color: #aaa;
+}
+
+.nura-chat-input-area button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.nura-chat-input-area button:hover {
+    background: #333;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .nura-chat-window {
+        width: calc(100vw - 2rem);
+        right: 1rem;
+        bottom: 5rem;
+        max-height: 70vh;
+    }
+
+    .nura-chat-toggle {
+        bottom: 1rem;
+        right: 1rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
 }
